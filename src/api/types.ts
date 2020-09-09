@@ -9,8 +9,7 @@
  */
 export type SearchResult = {
   nodes: [RepositoryInfo];
-  pageInfo: null;
-  repositoryCount: number;
+  pageInfo: PageInfo;
 };
 
 /**
@@ -33,8 +32,6 @@ export type RepositoryInfo = {
  * @see https://docs.github.com/en/graphql/reference/objects#pageinfo
  */
 export type PageInfo = {
-  startCursor?: string;
   endCursor?: string;
   hasNextPage: boolean;
-  hasPreviousPage: boolean;
 };
