@@ -17,7 +17,7 @@ interface SearchVars {
   query: string;
 }
 
-const SEARCH = gql`
+export const SEARCH = gql`
   query search($query: String!, $after: String) {
     search(after: $after, first: 20, query: $query, type: REPOSITORY) {
       nodes {
@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   },
 });
 
-function App() {
+const App = () => {
   // Search item that is requested from the API
   const [query, setQuery] = useState('react');
 
@@ -84,7 +84,7 @@ function App() {
       )}
 
       {error && (
-        <Alert severity="error">
+        <Alert severity="error" aria-label="graphql-error">
           <AlertTitle>GraphQL Error</AlertTitle>
           {error}
         </Alert>
@@ -117,6 +117,7 @@ function App() {
                 },
               })
             }
+            aria-label="load-more-button"
           >
             Load more
           </Button>
@@ -124,6 +125,6 @@ function App() {
       )}
     </Container>
   );
-}
+};
 
 export default App;

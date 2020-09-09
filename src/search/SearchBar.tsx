@@ -31,7 +31,10 @@ const SearchBar = ({ onChange, loading }: SearchBarProps) => {
   const classes = useStyles();
 
   return (
-    <Container classes={{ root: classes.container }}>
+    <Container
+      classes={{ root: classes.container }}
+      aria-label="search-bar-container"
+    >
       <TextField
         placeholder="react"
         onChange={(e) => {
@@ -52,9 +55,10 @@ const SearchBar = ({ onChange, loading }: SearchBarProps) => {
         classes={{
           root: classes.input,
         }}
+        aria-label="search-bar-input"
       />
       {/* Progress indicator controlled by the parent */}
-      {loading && <LinearProgress />}
+      {loading && <LinearProgress aria-label="search-bar-loading-indicator" />}
     </Container>
   );
 };
