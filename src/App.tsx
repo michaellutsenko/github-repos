@@ -1,15 +1,16 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { SearchResult, RepositoryInfo } from './api/types';
+import { SearchResult } from './api/types';
 
 import RepositoryList from './repositories/RepositoryList';
-// import SearchBar from './search/SearchBar';
+import SearchBar from './search/SearchBar';
 
 interface SearchData {
   search: SearchResult;
 }
 
 interface SearchVars {
+  after?: string;
   query: string;
 }
 
@@ -38,14 +39,19 @@ const SEARCH = gql`
   }
 `;
 
+const defaultVars = { query: 'react' };
+
 function App() {
-  const { data, error, loading } = useQuery<SearchData, SearchVars>(SEARCH, {
-    variables: { query: 'react' },
-  });
+  const { data, error, loading, refetch } = useQuery<SearchData, SearchVars>(
+    SEARCH,
+    {
+      variables: defaultVars,
+    }
+  );
 
   return (
     <React.Fragment>
-      {/* <SearchBar onChange={() => null} /> */}
+      <SearchBar onChange={(query: string) => refetch({ query })} />
       {data && <RepositoryList items={data.search.nodes} />}
     </React.Fragment>
   );

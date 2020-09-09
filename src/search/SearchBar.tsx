@@ -6,6 +6,7 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ onChange }: SearchBarProps) => {
+  // Debounced version of onChange
   const onChangeDebounced = debounce<any>(onChange, 1500);
 
   return (
@@ -14,7 +15,10 @@ const SearchBar = ({ onChange }: SearchBarProps) => {
         type="text"
         placeholder="react"
         onChange={(e) => {
+          // Default behaviour is not required
           e.preventDefault();
+
+          // Let the parent know, the search field was updated
           onChangeDebounced(e.target.value);
         }}
       />

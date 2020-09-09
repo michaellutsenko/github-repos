@@ -1,3 +1,5 @@
+// RepositoryList only functions as a view for search results
+
 import React from 'react';
 import { RepositoryInfo } from '../api/types';
 
