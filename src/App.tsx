@@ -64,7 +64,7 @@ const App = () => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" data-testid="app-wrapper">
       <SearchBar
         onChange={(query?: string) => {
           // Only perform refetch when the query is not empty
@@ -84,7 +84,7 @@ const App = () => {
       )}
 
       {error && (
-        <Alert severity="error" aria-label="graphql-error">
+        <Alert severity="error" data-testid="graphql-error">
           <AlertTitle>GraphQL Error</AlertTitle>
           {error}
         </Alert>
@@ -117,7 +117,7 @@ const App = () => {
                 },
               })
             }
-            aria-label="load-more-button"
+            data-testid="load-more-button"
           >
             Load more
           </Button>

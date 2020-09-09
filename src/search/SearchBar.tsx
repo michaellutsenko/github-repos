@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { debounce } from 'lodash';
 
 import {
@@ -30,10 +30,18 @@ const SearchBar = ({ onChange, loading }: SearchBarProps) => {
   // Custom styles
   const classes = useStyles();
 
+  const input = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (input && input.current) {
+      input.current.setAttribute('data-testid', 'search-bar-input');
+    }
+  });
+
   return (
     <Container
       classes={{ root: classes.container }}
-      aria-label="search-bar-container"
+      data-testid="search-bar-container"
     >
       <TextField
         placeholder="react"
@@ -44,6 +52,7 @@ const SearchBar = ({ onChange, loading }: SearchBarProps) => {
           // Let the parent know, the search field was updated
           onChangeDebounced(e.target.value);
         }}
+        inputRef={input}
         InputProps={{
           // Search icon on the left side of the input
           startAdornment: (
@@ -55,10 +64,9 @@ const SearchBar = ({ onChange, loading }: SearchBarProps) => {
         classes={{
           root: classes.input,
         }}
-        aria-label="search-bar-input"
       />
       {/* Progress indicator controlled by the parent */}
-      {loading && <LinearProgress aria-label="search-bar-loading-indicator" />}
+      {loading && <LinearProgress data-testid="search-bar-loading-indicator" />}
     </Container>
   );
 };

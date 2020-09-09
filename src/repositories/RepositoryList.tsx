@@ -20,7 +20,7 @@ interface RepositoryListProps {
 }
 
 const RepositoryList = ({ items }: RepositoryListProps) => (
-  <TableContainer component={Paper} aria-label="repository-list">
+  <TableContainer component={Paper} data-testid="repository-list">
     <Table>
       <TableHead>
         <TableRow>
@@ -37,7 +37,7 @@ const RepositoryList = ({ items }: RepositoryListProps) => (
       </TableHead>
       <TableBody>
         {items.map((repo: RepositoryInfo, index: number) => (
-          <TableRow key={`repo_row_${index}`} aria-label="repository-list-row">
+          <TableRow key={`repo_row_${index}`} data-testid="repository-list-row">
             <TableCell>
               <Link href={repo.url}>{repo.nameWithOwner}</Link>
             </TableCell>
