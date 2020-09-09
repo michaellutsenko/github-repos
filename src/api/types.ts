@@ -8,7 +8,7 @@
  * @see https://docs.github.com/en/graphql/reference/objects#searchresultitemconnection
  */
 export type SearchResult = {
-  nodes: [];
+  nodes: [RepositoryInfo];
   pageInfo: null;
   repositoryCount: number;
 };
